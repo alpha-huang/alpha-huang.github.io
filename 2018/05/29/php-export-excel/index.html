@@ -1,0 +1,615 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,php,codeigniter,excel,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2">
+
+
+
+
+
+
+<meta name="description" content="在日常开发尤其是管理后台的开发中我们常常会遇到导入excel文件进行批量数据操作以及将数据导出到excel的场景，本篇主要说一下本人在开发过程中总结的php导出excel的步骤和需要注意的问题。">
+<meta name="keywords" content="前端,php,codeigniter,excel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php导出excel">
+<meta property="og:url" content="http://yoursite.com/2018/05/29/php-export-excel/index.html">
+<meta property="og:site_name" content="alpha&#39;s blog">
+<meta property="og:description" content="在日常开发尤其是管理后台的开发中我们常常会遇到导入excel文件进行批量数据操作以及将数据导出到excel的场景，本篇主要说一下本人在开发过程中总结的php导出excel的步骤和需要注意的问题。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/20180529212801.png">
+<meta property="og:updated_time" content="2019-03-28T06:01:13.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php导出excel">
+<meta name="twitter:description" content="在日常开发尤其是管理后台的开发中我们常常会遇到导入excel文件进行批量数据操作以及将数据导出到excel的场景，本篇主要说一下本人在开发过程中总结的php导出excel的步骤和需要注意的问题。">
+<meta name="twitter:image" content="http://yoursite.com/images/20180529212801.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> php导出excel | alpha's blog - we made it</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">alpha's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">alpha's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                php导出excel
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-05-29T20:23:14+08:00" content="2018-05-29">
+              2018-05-29
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
+              2019-03-28
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/05/29/php-export-excel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/29/php-export-excel/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>在日常开发尤其是管理后台的开发中我们常常会遇到导入excel文件进行批量数据操作以及将数据导出到excel的场景，本篇主要说一下本人在开发过程中总结的php导出excel的步骤和需要注意的问题。<br><a id="more"></a></p>
+<h2 id="一、常规方式"><a href="#一、常规方式" class="headerlink" title="一、常规方式"></a>一、常规方式</h2><p>CI框架里导出excel可以调用excel_helper库里的<strong>writeExcelToBrowser</strong>方法，该方法可以将数组导出为excel文件输出到浏览器。<br>在业务中通常是根据用户的筛选条件调接口查询数据，或者是根据用户导入的excel进行相关操作获取操作结果，然后组装成数组，导出excel。<br>但是我们可能遇到页面超时，服务器内存溢出，超长数值型数据被显示成科学计数法，或者是用户有需要对某些列设置背景色等问题。</p>
+<h2 id="二、注意事项"><a href="#二、注意事项" class="headerlink" title="二、注意事项"></a>二、注意事项</h2><h3 id="1、科学计数法"><a href="#1、科学计数法" class="headerlink" title="1、科学计数法"></a>1、科学计数法</h3><p>excel编辑软件通常会将较大的数字例如订单号、身份证号显示成科学计数法，有些数字串太长被excel编辑软件转化为科学计数法后还会丢失一定的精度。例如原身份证号“421022199111111116”在Microsoft Excel里会被转化成“4.21022E+17”，重新转换成数值会变成“421022000000000000”，因此在导出文件时我们应该将单元格格式设置为文本型。</p>
+<h3 id="2、超时和内存溢出"><a href="#2、超时和内存溢出" class="headerlink" title="2、超时和内存溢出"></a>2、超时和内存溢出</h3><p>进行批量操作的时候数据量大或操作接口耗时较长时可能遇到页面超时报错或者服务器内存溢出的情况。一方面我们可以对超时时间和内存限制进行设置，另一方面需要根据实际测试设置一个数据量限制。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set_time_limit(<span class="number">120</span>);</span><br><span class="line">ini_set(<span class="string">'memory_limit'</span>,<span class="string">'512M'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里设置的超时时间只是php的超时时间，页面超时时间还受限于nginx配置的超时时间，以二者中较小的设置为准。</p>
+<h3 id="3、文件分发"><a href="#3、文件分发" class="headerlink" title="3、文件分发"></a>3、文件分发</h3><p>如果生成的文件是暂存在服务器，需要将文件发布到所有的机器，否则用户下载文件的时候可能下载不到，虽然通常情况下用户ip不变，请求的服务器也不会变，但是我们没办法保证用户一定会请求到这台服务器。</p>
+<h3 id="4、删除文件"><a href="#4、删除文件" class="headerlink" title="4、删除文件"></a>4、删除文件</h3><p>如果生成的文件是暂存在服务器，用户下载完之后应该尽量删除服务器上的文件，以节约磁盘空间。</p>
+<h2 id="三、优化"><a href="#三、优化" class="headerlink" title="三、优化"></a>三、优化</h2><p>如果处理的数据量实在是太大了，接口不能在规定的时间内处理完数据，一定会造成超时，这时我们可以对系统进行优化，这里有三种优化方案。</p>
+<h3 id="1、采用异步任务"><a href="#1、采用异步任务" class="headerlink" title="1、采用异步任务"></a>1、采用异步任务</h3><p>用一个异步任务调接口查询数据并且将数据写成文件暂存到服务器，前端页面每隔一段时间自动查询一下导出状态，这样就将一个请求分成了多次，规避了页面超时的问题，而且用户不用在页面等待，甚至可以关闭页面。这种方法需要写异步任务，还需要扭转任务状态，提供查询任务状态的接口，相对而言实现上会稍微复杂一些。</p>
+<h3 id="2、分多次请求"><a href="#2、分多次请求" class="headerlink" title="2、分多次请求"></a>2、分多次请求</h3><p>首次查询时只获取数据总量，然后前端页面分多次请求数据，每次将一定数量的数据追加写入文件暂存到服务器，请求结束后再自动下载文件，这样可以有效避免页面超时的问题。</p>
+<h3 id="3、使用csv格式"><a href="#3、使用csv格式" class="headerlink" title="3、使用csv格式"></a>3、使用csv格式</h3><p>由于excel会带有一些额外的格式，例如单元格宽度，背景色，边框，字体，导致解析excel文件时非常占用服务器内存（尽管导出时可能并不需要设置），所以导出csv文件，会让系统可导出的数据量大大增加。<br>使用csv格式导出数据时，需要注意以下几点</p>
+<ol>
+<li>对逗号进行转义，否则会被识别成csv间隔符。</li>
+<li>保存csv文件时应该在文件头部加入BOM标识，将文件保存为utf-8编码格式以保证中文不会出现乱码</li>
+</ol>
+<h2 id="四、相关php代码"><a href="#四、相关php代码" class="headerlink" title="四、相关php代码"></a>四、相关php代码</h2><h3 id="1、设置csv文件BOM"><a href="#1、设置csv文件BOM" class="headerlink" title="1、设置csv文件BOM"></a>1、设置csv文件BOM</h3><p>在所有数据写入前先写入<strong>chr(0xEF).chr(0xBB).chr(0xBF)</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fwrite($fp, chr(<span class="number">0xEF</span>).chr(<span class="number">0xBB</span>).chr(<span class="number">0xBF</span>))</span><br></pre></td></tr></table></figure></p>
+<h3 id="2、csv文件追加数据"><a href="#2、csv文件追加数据" class="headerlink" title="2、csv文件追加数据"></a>2、csv文件追加数据</h3><p>下面是我封装的向csv文件追加数据的方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">_putcsv</span><span class="params">($_excelFile,$data,$lMainId = <span class="number">1401</span>,$documentType)</span></span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span>($data <span class="keyword">as</span> $k =&gt;$val)&#123;</span><br><span class="line">        $data[$k] = str_replace(<span class="string">','</span>,<span class="string">'，'</span>,$val);</span><br><span class="line">    &#125;</span><br><span class="line">    $data = <span class="keyword">$this</span> -&gt;_unsetSomeRow($data,$lMainId,$documentType);</span><br><span class="line">    $fp = fopen($_excelFile, <span class="string">'a+'</span>);</span><br><span class="line">    fputcsv($fp,$data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、设定单元格格式"><a href="#3、设定单元格格式" class="headerlink" title="3、设定单元格格式"></a>3、设定单元格格式</h3><p>下面是我封装的一个将数组导出为excel文件的方法，包含的功能有</p>
+<ul>
+<li>设置指定列格式为文本型</li>
+<li>设置单元格背景色</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 输入生成excel文件到浏览器</span></span><br><span class="line"><span class="comment"> * writeExcelToBrowserV3($filename, $head, $data,array(),array('A','D'),array('D'=&gt;'FFFFFF00','H'=&gt;'FFFF0000'));</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $filename 文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $headLine 表头</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $data 数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $lostData</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $textCol 需要设置成文本类型的列</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $highLight 设置的单元格颜色array('D1'=&gt;'FFFFFF00','H1'=&gt;'FFFF0000')</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">writeExcelToBrowserV3</span><span class="params">($filename,$headLine,$data,$lostData=array<span class="params">()</span>,$textCol=array<span class="params">()</span>,$highLight=array<span class="params">()</span>)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">require_once</span>  BASEPATH.<span class="string">'libraries/phpexcel/PHPExcel.php'</span>;</span><br><span class="line">	$objPHPExcel = <span class="keyword">new</span> PHPExcel();</span><br><span class="line">	$objPHPExcel-&gt;setActiveSheetIndex(<span class="number">0</span>);</span><br><span class="line">	<span class="comment">//第一行</span></span><br><span class="line">	$i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">foreach</span> ($headLine <span class="keyword">as</span> $v)&#123;</span><br><span class="line">		$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValueByColumnAndRow($i++,<span class="number">1</span>,$v);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//写入数据</span></span><br><span class="line">	$writeLineNumb	=	<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">foreach</span> ($data <span class="keyword">as</span> $v) &#123;</span><br><span class="line">		$colNumb	=	<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">foreach</span> (array_keys($headLine) <span class="keyword">as</span> $objAttr) &#123;</span><br><span class="line">			<span class="keyword">if</span> (is_object($v) &amp;&amp; <span class="keyword">isset</span>($v-&gt;$objAttr)) &#123;</span><br><span class="line">				$cellValue	=	$v-&gt;$objAttr;</span><br><span class="line">			&#125;<span class="keyword">elseif</span>(is_array($v) &amp;&amp; <span class="keyword">isset</span>($v[$objAttr])) &#123;</span><br><span class="line">				$cellValue	=	$v[$objAttr];</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				$cellValue	=	$lostData[$objAttr];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(in_array(IntToChr($colNumb),$textCol))&#123;</span><br><span class="line">				$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValueExplicit(IntToChr($colNumb++).$writeLineNumb, $cellValue,PHPExcel_Cell_DataType::TYPE_STRING);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				$objPHPExcel-&gt;getActiveSheet()-&gt;setCellValueByColumnAndRow($colNumb++,$writeLineNumb,$cellValue);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		$writeLineNumb++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!<span class="keyword">empty</span>($highLight))&#123;</span><br><span class="line">		<span class="keyword">foreach</span>($highLight <span class="keyword">as</span> $row=&gt;$color)&#123;</span><br><span class="line">			$objPHPExcel-&gt;getActiveSheet()-&gt;getStyle($row)-&gt;getFill()-&gt;setFillType(PHPExcel_Style_Fill::FILL_SOLID);<span class="comment">//单元格背景色</span></span><br><span class="line">			$objPHPExcel-&gt;getActiveSheet()-&gt;getStyle($row)-&gt;getFill()-&gt;getStartColor()-&gt;setARGB($color);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ob_end_clean();<span class="comment">//清除缓冲区,避免乱码</span></span><br><span class="line">	header(<span class="string">'Content-Type: application/vnd.ms-excel'</span>);</span><br><span class="line">	header(sprintf(<span class="string">'Content-Disposition: attachment;filename="%s.xls"'</span>,$filename));</span><br><span class="line">	header(<span class="string">'Cache-Control: max-age=0'</span>);</span><br><span class="line">	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, <span class="string">'Excel5'</span>);</span><br><span class="line">	$objWriter-&gt;save(<span class="string">'php://output'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数字转字母 （类似于Excel列标）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> Int $index 索引值</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> Int $start 字母起始值</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> String 返回字母</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">IntToChr</span><span class="params">($index, $start = <span class="number">65</span>)</span> </span>&#123;</span><br><span class="line">	$str = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">if</span> (floor($index / <span class="number">26</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		$str .= IntToChr(floor($index / <span class="number">26</span>)<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> $str . chr($index % <span class="number">26</span> + $start);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用方法如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span> -&gt;load -&gt;helper(<span class="string">'excel_helper'</span>);</span><br><span class="line">writeExcelToBrowserV3($filename,$headLine, $data,$lostData,<span class="keyword">array</span>(<span class="string">'A'</span>,<span class="string">'D'</span>),<span class="keyword">array</span>(<span class="string">'D1'</span>=&gt;<span class="string">'33FFFF00'</span>,<span class="string">'E2'</span>=&gt;<span class="string">'FFFFFF00'</span>));</span><br></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">export_user_info</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $head = <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">'姓名'</span>,</span><br><span class="line">            <span class="string">'手机号'</span>,</span><br><span class="line">            <span class="string">'身份证号'</span>,</span><br><span class="line">        );</span><br><span class="line">        $data = <span class="keyword">array</span>(</span><br><span class="line">            <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'张三'</span>,</span><br><span class="line">                <span class="number">13035144567</span>,</span><br><span class="line">                <span class="string">'421022199810134567'</span>,</span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">'李四'</span>,</span><br><span class="line">                <span class="number">15945785412</span>,</span><br><span class="line">                <span class="string">'421022199711132548'</span>,</span><br><span class="line">            ),</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">$this</span> -&gt;load -&gt;helper(<span class="string">'excel_helper'</span>);</span><br><span class="line">        writeExcelToBrowserV3(<span class="string">'用户信息'</span>, $head,$data,<span class="keyword">array</span>(),<span class="keyword">array</span>(<span class="string">'B'</span>,<span class="string">'C'</span>),<span class="keyword">array</span>(<span class="string">'B1'</span>=&gt;<span class="string">'FFFFFF00'</span>,<span class="string">'C1'</span>=&gt;<span class="string">'FFFF0000'</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>导出数据截图如下<br> <img src="/images/20180529212801.png" alt="php导出excel文件" title="php导出excel文件"></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/codeigniter/" rel="tag">#codeigniter</a>
+          
+            <a href="/tags/excel/" rel="tag">#excel</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/29/php-import-excel/" rel="next" title="php读取excel">
+                <i class="fa fa-chevron-left"></i> php读取excel
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/05/29/php-export-excel/" data-title="php导出excel" data-url="http://yoursite.com/2018/05/29/php-export-excel/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alpha</span>
+</div>
+
+<div class="powered-by">
+  alpha
+</div>
+
+<div class="theme-info">
+  GitHub -
+  <a class="theme-link" href="https://github.com/alpha-huang">
+  alpha-huang
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alpha-huang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

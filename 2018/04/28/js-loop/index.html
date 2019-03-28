@@ -1,0 +1,698 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,基础知识,js,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2">
+
+
+
+
+
+
+<meta name="description" content="一、目录 [1.基本循环for，while，do…while] for while do…while   [2.适用于数组的循环forEach，map，for…of] forEach map for…of   [3.适用于对象的for…in] for…in   [4.其他组件库里的循环] $.each v-for…in wx:for">
+<meta name="keywords" content="前端,基础知识,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js里常见的循环">
+<meta property="og:url" content="http://yoursite.com/2018/04/28/js-loop/index.html">
+<meta property="og:site_name" content="alpha&#39;s blog">
+<meta property="og:description" content="一、目录 [1.基本循环for，while，do…while] for while do…while   [2.适用于数组的循环forEach，map，for…of] forEach map for…of   [3.适用于对象的for…in] for…in   [4.其他组件库里的循环] $.each v-for…in wx:for">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-28T06:01:13.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js里常见的循环">
+<meta name="twitter:description" content="一、目录 [1.基本循环for，while，do…while] for while do…while   [2.适用于数组的循环forEach，map，for…of] forEach map for…of   [3.适用于对象的for…in] for…in   [4.其他组件库里的循环] $.each v-for…in wx:for">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> js里常见的循环 | alpha's blog - we made it</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">alpha's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">alpha's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js里常见的循环
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-04-28T15:29:23+08:00" content="2018-04-28">
+              2018-04-28
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
+              2019-03-28
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/28/js-loop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/28/js-loop/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><!--以下是正文-->
+<h2 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h2><ul>
+<li>[1.基本循环for，while，do…while]<ul>
+<li><a href="#for">for</a></li>
+<li><a href="#while">while</a></li>
+<li><a href="#dowhile">do…while</a></li>
+</ul>
+</li>
+<li>[2.适用于数组的循环forEach，map，for…of]<ul>
+<li><a href="#foreach">forEach</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#forof">for…of</a></li>
+</ul>
+</li>
+<li>[3.适用于对象的for…in]<ul>
+<li><a href="#forin">for…in</a></li>
+</ul>
+</li>
+<li>[4.其他组件库里的循环]<ul>
+<li><a href="#each">$.each</a></li>
+<li><a href="#v-forin">v-for…in</a></li>
+<li><a href="#wxfor">wx:for</a></li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h2><p>js里常见的循环有一下几种：</p>
+<h3 id="1-基本循环for，while，do…while"><a href="#1-基本循环for，while，do…while" class="headerlink" title="1.基本循环for，while，do…while"></a>1.基本循环for，while，do…while</h3><h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="while"><a href="#while" class="headerlink" title="while"></a>while</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">10</span>)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="do…while"><a href="#do…while" class="headerlink" title="do…while"></a>do…while</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(i++);</span><br><span class="line">&#125;<span class="keyword">while</span>(i &lt; <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-适用于数组的循环forEach，map，for…of"><a href="#2-适用于数组的循环forEach，map，for…of" class="headerlink" title="2.适用于数组的循环forEach，map，for…of"></a>2.适用于数组的循环forEach，map，for…of</h3><h4 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">val,index,array</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(val,index,array);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>&#125;;</span><br><span class="line">arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">val,index,array</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(val,index,<span class="keyword">this</span>);<span class="comment">//这里的this指向map的第二个参数</span></span><br><span class="line">&#125;,obj);</span><br></pre></td></tr></table></figure>
+<h4 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> val <span class="keyword">of</span> arr)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>for…of除了可以用于遍历数组，也可以遍历Set,Map等任何有iterator接口的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">'a'</span>,<span class="number">1</span>);</span><br><span class="line">map.set(<span class="string">'b'</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> [key,val] <span class="keyword">of</span> map)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(key,val);<span class="comment">//a 1 / b 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-适用于对象的for…in"><a href="#3-适用于对象的for…in" class="headerlink" title="3.适用于对象的for…in"></a>3.适用于对象的for…in</h3><h4 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(key,obj[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-其他组件库里的循环"><a href="#4-其他组件库里的循环" class="headerlink" title="4.其他组件库里的循环"></a>4.其他组件库里的循环</h3><h4 id="each"><a href="#each" class="headerlink" title="$.each"></a>$.each</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>&#125;;</span><br><span class="line">$.each(obj,<span class="function"><span class="keyword">function</span>(<span class="params">key,val</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(key,val,<span class="keyword">this</span>);<span class="comment">//这里this指向val</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="v-for…in"><a href="#v-for…in" class="headerlink" title="v-for…in"></a>v-for…in</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-<span class="keyword">for</span>=<span class="string">"(item,index) in arr"</span></span><br></pre></td></tr></table></figure>
+<h4 id="wx-for"><a href="#wx-for" class="headerlink" title="wx:for"></a>wx:for</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx:<span class="keyword">for</span>=<span class="string">"&#123;&#123;arr&#125;&#125;"</span><span class="comment">//index,item</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><h3 id="1-关于参数"><a href="#1-关于参数" class="headerlink" title="1.关于参数"></a>1.关于参数</h3><p>可以看到大多数循环都有参数，而且参数的顺序还不太一样，但是对数组来说，遍历的时候index不太必要，因此作为可选参数，都是在val的后面，例如forEach，map；而对于对象来说key比较重要，因此对象的遍历一般key在前面，例如for…in，$.each。</p>
+<h3 id="2-关于this"><a href="#2-关于this" class="headerlink" title="2.关于this"></a>2.关于this</h3><p>可以看到jquery的$.each里this指向循环对象的每一个子对象，而map方法允许传入第二个参数用来指定this的指向。</p>
+<h3 id="3-关于continue，break，return"><a href="#3-关于continue，break，return" class="headerlink" title="3.关于continue，break，return"></a>3.关于continue，break，return</h3><p>三种基本循环以及for…of、for…in都能正常使用continue，break，return；但forEach、map、$.each都是遍历数组或对象对其执行回调函数，所以没办法正常使用continue，break。各种遍历方法对continue，break，return的处理方式如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>continue</th>
+<th>break</th>
+<th>return</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for</td>
+<td>正常</td>
+<td>正常</td>
+<td>正常</td>
+<td></td>
+</tr>
+<tr>
+<td>while</td>
+<td>正常</td>
+<td>正常</td>
+<td>正常</td>
+<td></td>
+</tr>
+<tr>
+<td>do…while</td>
+<td>正常</td>
+<td>正常</td>
+<td>正常</td>
+<td></td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>语法错误</td>
+<td>语法错误</td>
+<td>正常</td>
+<td>return后的语句不执行</td>
+</tr>
+<tr>
+<td>map</td>
+<td>语法错误</td>
+<td>语法错误</td>
+<td>正常</td>
+<td>return后的语句不执行</td>
+</tr>
+<tr>
+<td>for…of</td>
+<td>正常</td>
+<td>正常</td>
+<td>正常</td>
+<td></td>
+</tr>
+<tr>
+<td>for…in</td>
+<td>正常</td>
+<td>正常</td>
+<td>正常</td>
+<td></td>
+</tr>
+<tr>
+<td>$.each</td>
+<td>语法错误</td>
+<td>语法错误</td>
+<td>正常</td>
+<td>return后的语句不执行</td>
+</tr>
+</tbody>
+</table>
+<p>注意不要在while、do…while的i++前使用continue，否则会死循环。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/基础知识/" rel="tag">#基础知识</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/js-common-function/" rel="next" title="js常用方法">
+                <i class="fa fa-chevron-left"></i> js常用方法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/29/jquery-attr-prop-data/" rel="prev" title="jQuery中的attr、prop、data方法对比">
+                jQuery中的attr、prop、data方法对比 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/28/js-loop/" data-title="js里常见的循环" data-url="http://yoursite.com/2018/04/28/js-loop/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alpha</span>
+</div>
+
+<div class="powered-by">
+  alpha
+</div>
+
+<div class="theme-info">
+  GitHub -
+  <a class="theme-link" href="https://github.com/alpha-huang">
+  alpha-huang
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alpha-huang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

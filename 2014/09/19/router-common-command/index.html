@@ -1,0 +1,625 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="路由器,网络安全,密码破解,笔记,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2">
+
+
+
+
+
+
+<meta name="description" content="操作环境为企业级路由器或模拟器（例如：Cisco Packet Tracer）">
+<meta name="keywords" content="路由器,网络安全,密码破解,笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由器设置常用命令">
+<meta property="og:url" content="http://yoursite.com/2014/09/19/router-common-command/index.html">
+<meta property="og:site_name" content="alpha&#39;s blog">
+<meta property="og:description" content="操作环境为企业级路由器或模拟器（例如：Cisco Packet Tracer）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-28T06:01:13.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="路由器设置常用命令">
+<meta name="twitter:description" content="操作环境为企业级路由器或模拟器（例如：Cisco Packet Tracer）">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> 路由器设置常用命令 | alpha's blog - we made it</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">alpha's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">alpha's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                路由器设置常用命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-09-19T20:18:34+08:00" content="2014-09-19">
+              2014-09-19
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
+              2019-03-28
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/09/19/router-common-command/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/09/19/router-common-command/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p> 操作环境为企业级路由器或模拟器（例如：Cisco Packet Tracer）<br><a id="more"></a></p>
+<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;用户模式	en进入特权模式</span><br><span class="line">#特权模式</span><br><span class="line">conf t进入配置模式</span><br><span class="line">show run查看当前配置</span><br><span class="line">write保存</span><br><span class="line">ping 192.168.1.1测试通信</span><br><span class="line">(config)#配置模式</span><br><span class="line">hostname R1		修改设备名称</span><br><span class="line">enable password 123		设置明文密码</span><br><span class="line">enable secret 123		设置密文密码</span><br><span class="line">int fa0/0		进入接口模式</span><br><span class="line">line console 0		进入配置线路</span><br><span class="line">(config-if)#接口模式</span><br><span class="line">ip add 192.168.1.1 255.255.255.0配置接口上的ip和掩码</span><br><span class="line">no sh		打开接口</span><br><span class="line">(config-line)#线路模式</span><br><span class="line">exec-timeout 1 30		设置超时1分30秒自动退出</span><br></pre></td></tr></table></figure>
+<h3 id="破解密码"><a href="#破解密码" class="headerlink" title="破解密码"></a>破解密码</h3><p>1.用记事本写好命令复制粘贴</p>
+<p>2.流程<br>①　选设备，连线<br>②　规划ip地址，并标注<br>③　配置ip地址，测试直连<br>3.一些命令<br>静态路由<br>配置模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route 目标网络号 掩码 下一跳（下一个路由的进接口）</span><br><span class="line">ip route 192.168.1.0 255.255.255.0 192.168.2.1</span><br></pre></td></tr></table></figure></p>
+<p>查看静态路由show ip route（特权模式）<br>查错方法：traceroute 目标地址<br>4.破密码<br>①　重启一半时按ctrl+c打断正常启动，进入工程模式<br>②　工程模式下confreg 0x2142（2142意味启动时跳过加载配置，2102是默认值，意味加载配置文件）<br>③　reset重启<br>④　启动后无任何配置，进入特权模式<br>⑤　手动加载配置copy start run<br>⑥　进入配置模式修改密码<br>⑦　恢复启动参数config-register 0x2102<br>⑧　保存<br>5.配置动态路由RIP<br>在路由器上运行RIP，可使得路由器自动发送已有路由给相邻的路由器从而全网联通<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">router rip		运行RIP</span><br><span class="line">network 12.0.0.0		通告本地的直连网段</span><br><span class="line">show ip route</span><br><span class="line">eigrp 增强型内部网关协议，思科私有</span><br><span class="line">router eigrp 1		1代表EIGRP的AS号</span><br><span class="line">netword 12.0.0.0</span><br></pre></td></tr></table></figure></p>
+<p>6.多线路选择<br>信任度<br>浮动静态路由</p>
+<h3 id="配置简单的网络环境"><a href="#配置简单的网络环境" class="headerlink" title="配置简单的网络环境"></a>配置简单的网络环境</h3><p>1.交换网络<br>①　交换机不识别ip，路由器可以识别mac<br>②　交换机又叫网桥（透明网桥）<br>③　接交换机时接成树形而不是线形<br>2.DHCP动态主机配置协议<br>CS模型<br>client-server<br>PC        服务器/GW<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ip dhcp excluded-address 192.168.1.1 192.168.1.10		保留不分配的ip</span><br><span class="line">ip dhcp pool 1		创建地址池</span><br><span class="line">network 192.168.1.0 255.255.255.0		分配网段</span><br><span class="line">default-router 192.168.1.1		网关ip</span><br><span class="line">*DHCP服务器应该与客户端在同一个局域网</span><br></pre></td></tr></table></figure></p>
+<p>3.vlan虚拟局域网<br>创建vlan<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vlan 10</span><br><span class="line">name cisco</span><br><span class="line">vlan 20</span><br><span class="line">name huawei</span><br></pre></td></tr></table></figure></p>
+<p>划vlan<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int fa0/1</span><br><span class="line">sw mode access		设置为接入端口</span><br><span class="line">sw access vlan 10			接入vlan10</span><br><span class="line">int range fa0/3-4		批量配置</span><br><span class="line">sw mode access</span><br><span class="line">sw access vlan 20</span><br></pre></td></tr></table></figure></p>
+<p>4.在交换机之间配置trunk（干道）承载多个vlan信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int fa0/3</span><br><span class="line">sw trunk en dot1q		三层交换机需要选择打标方式</span><br><span class="line">sw mode trunk		选择干道模式</span><br></pre></td></tr></table></figure></p>
+<p>为了保证vlan间通信，需要添加三层交换机<br>①　配置干道，创建trunk<br>②　创建与vlan相关的网关接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int vlan 10</span><br><span class="line">ip add 192.168.10.254 255.255.255.0</span><br></pre></td></tr></table></figure></p>
+<p>③　打开路由功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip routing</span><br><span class="line">*不要忘记pc需要设置Gw</span><br></pre></td></tr></table></figure></p>
+<p>5.<br>干道        show run<br>vlan        show vlan brief<br>划vlan<br>vlan网关        sh ip int brief<br>DHCP<br>ping</p>
+<h3 id="配置常用的家庭网络"><a href="#配置常用的家庭网络" class="headerlink" title="配置常用的家庭网络"></a>配置常用的家庭网络</h3><p>1.家庭网络<br>先配置交换机再配置路由器<br>(1)VTP<br>vlan干道协议，同步vlan信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vtp mode server/client</span><br><span class="line">vtp domain cisco</span><br><span class="line">*必须先配置trunk再配置VTP</span><br></pre></td></tr></table></figure></p>
+<p>(2)三层交换机<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int fa0/1</span><br><span class="line">no sw		将接口改为路由</span><br><span class="line">ip add 192.168.1.1 255.255.255.0</span><br><span class="line">ip routing		打开三层交换机的路由功能</span><br><span class="line">router eigrp 1</span><br><span class="line">no auto		取消地址汇总</span><br></pre></td></tr></table></figure></p>
+<p>2.ACL访问控制列表<br>作用是限制流量<br>(1)a.定义ACL规则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">access-list 1 deny host 192.168.10.1</span><br><span class="line">access 1 permit any		拒绝某台主机</span><br><span class="line">access-list 2 deny 192.168.10.0 0.0.0.255</span><br><span class="line">access 2 permit any		拒绝某个网段</span><br><span class="line">*默认情况下会拒绝所有</span><br><span class="line">access-list 3 permit 192.168.10.0 0.0.0.255</span><br></pre></td></tr></table></figure></p>
+<p>b.在接口上调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int fa0/0</span><br><span class="line">ip access-group 1 in/out		注意调用的方向</span><br><span class="line">show ip access-list		查看ACL</span><br></pre></td></tr></table></figure></p>
+<p>(2)先写范围最小的才写大的，否则执行前面的之后就不会再执行后面的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">access-list 4 permit host 192.168.10.10</span><br><span class="line">access-list 4 deny 192.168.10.0 0.0.0.255</span><br><span class="line">access-list 4 permit any</span><br></pre></td></tr></table></figure></p>
+<p>(3)扩展ACL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access-list 100 deny ip 192.168.20.0 0.0.0.255(源) host 23.1.1.2(目的)</span><br><span class="line">access-list 100 permit ip any any		允许any到any</span><br></pre></td></tr></table></figure></p>
+<p>(4)禁止除http外的其他服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">access-list 100 permit tcp 192.168.20.0 0.0.0.255 host 23.1.1.2 eq 80</span><br><span class="line">access-list 100 deny ip 192.168.20.0 0.0.0.255 host 23.1.1.2</span><br><span class="line">access-list 100 permit ip any any</span><br></pre></td></tr></table></figure></p>
+<h3 id="真机实验"><a href="#真机实验" class="headerlink" title="真机实验"></a>真机实验</h3><p>1.交换机破密码<br>①　拔电源，按下mode键，插上电源进入sw模式，松开mode键<br>②　初始化flash        Flash_init<br>③　修改配置文件名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dir flash/？		显示所有文件</span><br><span class="line">rename flash:config.text flash:config.old</span><br></pre></td></tr></table></figure></p>
+<p>④　重启        boot<br>⑤　进入特权模式，手动加载配置copy flash:config.old run<br>⑥　删除密码并保存<br>2.路由器破密码<br>①　工程模式下o/r 0x2142<br>②　重启 i</p>
+<h3 id="默认路由（缺省路由）"><a href="#默认路由（缺省路由）" class="headerlink" title="默认路由（缺省路由）"></a>默认路由（缺省路由）</h3><p>1.NAT<br>GW上配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ip route 0.0.0.0 0.0.0.0 100.1.1.2		默认路由，代替GW上所有去往公网的路由</span><br><span class="line">access-list 1 permit any		ACL用来定义内网可以被转换的PC</span><br><span class="line">ip nat inside source list 1 interface f0/1 overload		将内网IP地址转换为公网IP，f0/1是公网接口</span><br><span class="line">ip nat inside source static 192.168.1.4 100.1.1.4		静态的地址转换，通常给内网服务器使用</span><br><span class="line">int f0/0</span><br><span class="line">ip nat inside		设置内网接口</span><br><span class="line">int f0/1</span><br><span class="line">ip nat outside		设置公网接口</span><br></pre></td></tr></table></figure></p>
+<p>2.http/ftp下载、p2p下载与离线下载<br>3.电信分配IP地址100.1.1.0/30实际上只有</p>
+<ul>
+<li>100.1.1.0        网段</li>
+<li>100.1.1.1        电信端</li>
+<li>100.1.1.2        用户端</li>
+<li>100.1.1.3        广播网</li>
+</ul>
+<h3 id="交换机备份"><a href="#交换机备份" class="headerlink" title="交换机备份"></a>交换机备份</h3><p>STP(spanning-tree protocol)生成树协议<br>选出某些阻塞接口不转发流量，防止形成环路<br>备分步骤<br>①　添加设备并连线<br>②　配置trunk<br>③　创建vlan<br>④　设置STP的根和次根<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spanning-tree vlan 1-4094 priority 4096</span><br></pre></td></tr></table></figure></p>
+<p>⑤　测试</p>
+<h3 id="网关备份"><a href="#网关备份" class="headerlink" title="网关备份"></a>网关备份</h3><p>HSRP热备份路由协议<br>①　在需要成为主网关的路由器上配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface fa0/0		进入内网接口</span><br><span class="line">ip add 192.168.1.2 255.255.255.0		物理IP</span><br><span class="line">standby 1 ip 192.168.1.254		虚拟IP</span><br><span class="line">standby 1 prority 200		优先级</span><br><span class="line">standby 1 preempt		抢占</span><br></pre></td></tr></table></figure></p>
+<p>②　备份网关上的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface fa0/0		进入内网接口</span><br><span class="line">ip add 192.168.1.1 255.255.255.0</span><br><span class="line">standby 1 ip 192.168.1.254</span><br></pre></td></tr></table></figure></p>
+<p>端口安全<br>限制access接口下可以学习的mac地址数量，可以进行静态绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int fa0/1</span><br><span class="line">sw mode access		设置access模式</span><br><span class="line">sw port-security		开启端口安全</span><br><span class="line">sw port-security mac-address 0010.11DA.2668		静态绑定单个mac地址</span><br><span class="line">int fa0/2</span><br><span class="line">sw mode access</span><br><span class="line">sw port-security</span><br><span class="line">sw port-security mac-address sticky		自动绑定</span><br><span class="line">sw port-security maximum 2		最大绑定个数</span><br><span class="line">*如果端口被安全措施关闭，则需要先shutdown，再no sh重新打开</span><br></pre></td></tr></table></figure></p>
+<h3 id="ZBF区域防火墙"><a href="#ZBF区域防火墙" class="headerlink" title="ZBF区域防火墙"></a>ZBF区域防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">policy-map type inspect 1		建立策略1</span><br><span class="line">class type inspect class-default		针对所有流量</span><br><span class="line">inspect		检测</span><br><span class="line">zone security A		创建区域A</span><br><span class="line">zone security B		创建区域B</span><br><span class="line">zone-pair security DMZ source A destination B		创建区域策略</span><br><span class="line">service-policy type inspect 1		调用策略</span><br><span class="line">int fa0/0</span><br><span class="line">ip add 192.168.1.1 255.255.255.0</span><br><span class="line">zone-member security A		设置为A区域接口</span><br><span class="line">int fa0/0</span><br><span class="line">ip add 192.168.2.1 255.255.255.0</span><br><span class="line">zone-member security B		设置为B区域接口</span><br></pre></td></tr></table></figure>
+<p>FRSW帧中继交换机<br>encapsulated</p>
+<h3 id="DHCP中继"><a href="#DHCP中继" class="headerlink" title="DHCP中继"></a>DHCP中继</h3><p>STP加速（经典生成树）<br>为了防止终端接入交换网络等待30s造成的DHCP失败，将连接终端的端口配置为快速端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int range fa0/5-24</span><br></pre></td></tr></table></figure></p>
+<p>RST（快速生成树Rapid-ST）<br>减少生成树的收敛时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spanning-tree mode rapid		开启RST，要在所有SW上配置</span><br></pre></td></tr></table></figure></p>
+<p>STP流量分担<br>PVST每vlan生成树<br>针对不同的vlan进行不同的STP选举，可以阻塞不同的端口，进行流量分担<br>sw1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spa vlan 10 pri 0			vlan10主根</span><br><span class="line">spa vlan 20 pri 4096		vlan20次根</span><br></pre></td></tr></table></figure></p>
+<p>sw2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spa vlan 10 pri 4096		vlan10次根</span><br><span class="line">spa vlan 20 pri 0			vlan20主根</span><br><span class="line">show spa vlan 10/20</span><br><span class="line">rapid-pvst</span><br></pre></td></tr></table></figure></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/路由器/" rel="tag">#路由器</a>
+          
+            <a href="/tags/网络安全/" rel="tag">#网络安全</a>
+          
+            <a href="/tags/密码破解/" rel="tag">#密码破解</a>
+          
+            <a href="/tags/笔记/" rel="tag">#笔记</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/02/book-note-1/" rel="prev" title="《web全栈工程师的自我修养》知识要点">
+                《web全栈工程师的自我修养》知识要点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/09/19/router-common-command/" data-title="路由器设置常用命令" data-url="http://yoursite.com/2014/09/19/router-common-command/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alpha</span>
+</div>
+
+<div class="powered-by">
+  alpha
+</div>
+
+<div class="theme-info">
+  GitHub -
+  <a class="theme-link" href="https://github.com/alpha-huang">
+  alpha-huang
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alpha-huang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

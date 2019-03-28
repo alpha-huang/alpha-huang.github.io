@@ -1,0 +1,664 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CodeIgniter,联表查询,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2">
+
+
+
+
+
+
+<meta name="description" content="昨天小伙伴遇到一个联表查询的问题，隐约记得大学的《数据库原理》上有讲过，但是无奈当时只顾着梦游，不记得具体怎么做了，请教前辈后得出三种处理方法。具体问题：表A与表B中同时存在某个字段f，现在需要在表A里查找字段f后到表B查询相关数据，这是个很典型且基础的联表查询。">
+<meta name="keywords" content="CodeIgniter,联表查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CI联表查询">
+<meta property="og:url" content="http://yoursite.com/2016/05/19/sql-join-query/index.html">
+<meta property="og:site_name" content="alpha&#39;s blog">
+<meta property="og:description" content="昨天小伙伴遇到一个联表查询的问题，隐约记得大学的《数据库原理》上有讲过，但是无奈当时只顾着梦游，不记得具体怎么做了，请教前辈后得出三种处理方法。具体问题：表A与表B中同时存在某个字段f，现在需要在表A里查找字段f后到表B查询相关数据，这是个很典型且基础的联表查询。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-28T06:01:13.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CI联表查询">
+<meta name="twitter:description" content="昨天小伙伴遇到一个联表查询的问题，隐约记得大学的《数据库原理》上有讲过，但是无奈当时只顾着梦游，不记得具体怎么做了，请教前辈后得出三种处理方法。具体问题：表A与表B中同时存在某个字段f，现在需要在表A里查找字段f后到表B查询相关数据，这是个很典型且基础的联表查询。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> CI联表查询 | alpha's blog - we made it</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">alpha's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">alpha's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CI联表查询
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-05-19T18:14:20+08:00" content="2016-05-19">
+              2016-05-19
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
+              2019-03-28
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/19/sql-join-query/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/19/sql-join-query/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>昨天小伙伴遇到一个联表查询的问题，隐约记得大学的《数据库原理》上有讲过，但是无奈当时只顾着梦游，不记得具体怎么做了，请教前辈后得出三种处理方法。<br>具体问题：<br>表A与表B中同时存在某个字段f，现在需要在表A里查找字段f后到表B查询相关数据，这是个很典型且基础的联表查询。<br><a id="more"></a><br>以数据表t_mos和user为例</p>
+<table>
+<thead>
+<tr>
+<th>sel_id</th>
+<th>uid</th>
+<th>sel_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>329</td>
+<td>alpha</td>
+<td>阿尔法</td>
+</tr>
+<tr>
+<td>330</td>
+<td>beta</td>
+<td>贝塔</td>
+</tr>
+<tr>
+<td>331</td>
+<td>gamma</td>
+<td>伽马</td>
+</tr>
+<tr>
+<td>332</td>
+<td>delta</td>
+<td>阿尔法</td>
+</tr>
+</tbody>
+</table>
+<p>（数据表t_mos）</p>
+<table>
+<thead>
+<tr>
+<th>usr_id</th>
+<th>usr_email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alpha</td>
+<td><a href="mailto:alpha@midea.com" target="_blank" rel="noopener">alpha@midea.com</a></td>
+</tr>
+<tr>
+<td>beta</td>
+<td><a href="mailto:beta@midea.com" target="_blank" rel="noopener">beta@midea.com</a></td>
+</tr>
+<tr>
+<td>gamma</td>
+<td><a href="mailto:gamma@midea.com" target="_blank" rel="noopener">gamma@midea.com</a></td>
+</tr>
+<tr>
+<td>delta</td>
+<td><a href="mailto:delta@midea.com" target="_blank" rel="noopener">delta@midea.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>（数据表user）<br>现在需要查询昵称（sel_name）为‘阿尔法’的用户的邮箱地址（user_email）。</p>
+<h3 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h3><p>left join sql语句查询</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$select = <span class="string">"select u.usr_email from t_mos t left join user u on t.uid =u.usr_id  where t.sel_name in ('阿尔法');"</span>;</span><br><span class="line">$query = <span class="keyword">$this</span>-&gt;MASTER_DB-&gt;query($select)-&gt;result();</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[0]=&gt;</span><br><span class="line">  object(stdClass)#34 (1) &#123;</span><br><span class="line">    ["usr_email"]=&gt;</span><br><span class="line">    string(14) "alpha@midea.com"</span><br><span class="line">  &#125;</span><br><span class="line">[1]=&gt;</span><br><span class="line">  object(stdClass)#35 (1) &#123;</span><br><span class="line">    ["usr_email"]=&gt;</span><br><span class="line">    string(18) "delta@midea.com"</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h3><p>使用的CI的数据库操作类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query = <span class="keyword">$this</span> -&gt;MASTER_DB -&gt;where(<span class="string">'sel_name'</span>,<span class="string">'阿尔法'</span>) -&gt;join(<span class="string">'user'</span>, <span class="string">'t_mos.uid =user.usr_id'</span>, <span class="string">'left'</span>) -&gt;select(<span class="string">'usr_email'</span>) -&gt;get(<span class="string">'t_mos'</span>)-&gt;result();</span><br></pre></td></tr></table></figure>
+<p>运行结果和上面一致</p>
+<h3 id="方法三："><a href="#方法三：" class="headerlink" title="方法三："></a>方法三：</h3><p>分两次查询，在表t_mos中查到uid后再去表user里查usr_email</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$resp = <span class="keyword">$this</span> -&gt;MASTER_DB -&gt;where(<span class="string">'sel_name'</span>,阿尔法<span class="string">') -&gt;select('</span>uid<span class="string">') -&gt;get("t_mos") -&gt;result_array();</span></span><br><span class="line"><span class="string">$uids =array();</span></span><br><span class="line"><span class="string">foreach($resp as $v)&#123;</span></span><br><span class="line"><span class="string">    $uids[] = $v['</span>uid<span class="string">'];</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">$query = $this -&gt;MASTER_DB -&gt;where_in('</span>usr_id<span class="string">',$uids) -&gt;select('</span>usr_email<span class="string">') -&gt;get("user") -&gt;result_array();</span></span><br></pre></td></tr></table></figure>
+<p>运行结果和上面一致</p>
+<p>第一种方法直接写sql语句，存在sql注入的风险<br>第二种方法用CI的数据库操作类join，大表不建议使用，因为使用join进行关联查询，一张表的数据量大时可能会阻塞其他线程的写入操作。<br>第三种方法分两次查询，需要前端手动处理数据，相比于前两种方法写法稍复杂，但可以优化性能。<br>把逻辑都放到代码中，数据库就当成 k-v 存储，配合索引，效率更高。 因为数据库服务器比较集中，复杂查询容易出现瓶颈，但是前端代码的服务器，一直都有富裕的，扩充也比较容易。<br>因此推荐第三种方法。<br>为了测试三种方法的效率，我往两张数据表里都添加了50W条数据，经过多次测试，结果显示，首次查询耗时比较长，约为100ms,之后都在1ms左右，下面是查询耗时（单位是毫秒ms）</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">float</span><span class="params">(<span class="number">147.28403091431</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">float</span><span class="params">(<span class="number">84.766149520874</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">float</span><span class="params">(<span class="number">85.854053497314</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">float</span><span class="params">(<span class="number">0.73790550231934</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">float</span><span class="params">(<span class="number">0.81992149353027</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">float</span><span class="params">(<span class="number">1.5439987182617</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>测试结果仅供参考。</p>
+<h3 id="insert-batch"><a href="#insert-batch" class="headerlink" title="insert_batch()"></a>insert_batch()</h3><p>另外，在批量插入数据时发现了CI的批量插入数据的数据库类insert_batch()的一个bug，那就是每次插入100条数据，最后返回的affected_rows()只是最后一次的影响条数。CI的insert_batch()部分的源码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>, $total = count(<span class="keyword">$this</span>-&gt;ar_set); $i &lt; $total; $i = $i + <span class="number">100</span>)</span><br><span class="line">&#123;</span><br><span class="line">    $sql = <span class="keyword">$this</span>-&gt;_insert_batch(<span class="keyword">$this</span>-&gt;_protect_identifiers($table, <span class="keyword">TRUE</span>, <span class="keyword">NULL</span>, <span class="keyword">FALSE</span>), <span class="keyword">$this</span>-&gt;ar_keys, array_slice(<span class="keyword">$this</span>-&gt;ar_set, $i, <span class="number">100</span>));</span><br><span class="line">    <span class="comment">//echo $sql;</span></span><br><span class="line">    <span class="keyword">$this</span>-&gt;query($sql);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要想获取准确的条数只能自己处理了。</p>
+<p>参考资料：</p>
+<p><a href="http://www.cnblogs.com/wangtao_20/p/3463435.html" target="_blank" rel="noopener">sql之left join、right join、inner join的区别</a></p>
+<p><a href="http://www.4byte.cn/question/537523/codeigniter-s-insert-batch-with-thousands-of-inserts-has-missing-records.html" target="_blank" rel="noopener">MYSQL加锁的测验</a></p>
+<p><a href="http://www.4byte.cn/question/537523/codeigniter-s-insert-batch-with-thousands-of-inserts-has-missing-records.html" target="_blank" rel="noopener">CodeIgniter的insert_batch()数以千计的插入有丢失的记录</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CodeIgniter/" rel="tag">#CodeIgniter</a>
+          
+            <a href="/tags/联表查询/" rel="tag">#联表查询</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/11/git-common-command/" rel="next" title="git常用命令">
+                <i class="fa fa-chevron-left"></i> git常用命令
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/01/floating-point-precision-loss/" rel="prev" title="浮点数丢失精度">
+                浮点数丢失精度 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/19/sql-join-query/" data-title="CI联表查询" data-url="http://yoursite.com/2016/05/19/sql-join-query/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alpha</span>
+</div>
+
+<div class="powered-by">
+  alpha
+</div>
+
+<div class="theme-info">
+  GitHub -
+  <a class="theme-link" href="https://github.com/alpha-huang">
+  alpha-huang
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alpha-huang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
