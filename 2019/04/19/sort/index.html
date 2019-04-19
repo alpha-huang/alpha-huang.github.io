@@ -1,0 +1,589 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="排序算法是js最基础的算法，只要弄清楚各种排序算法的排序逻辑，要实现起来就不难了。1.冒泡排序2.快速排序3.选择排序4.插入排序">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js常见排序算法">
+<meta property="og:url" content="http://yoursite.com/2019/04/19/sort/index.html">
+<meta property="og:site_name" content="alpha&#39;s blog">
+<meta property="og:description" content="排序算法是js最基础的算法，只要弄清楚各种排序算法的排序逻辑，要实现起来就不难了。1.冒泡排序2.快速排序3.选择排序4.插入排序">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-19T10:33:14.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js常见排序算法">
+<meta name="twitter:description" content="排序算法是js最基础的算法，只要弄清楚各种排序算法的排序逻辑，要实现起来就不难了。1.冒泡排序2.快速排序3.选择排序4.插入排序">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> js常见排序算法 | alpha's blog - we made it</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">alpha's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">alpha's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js常见排序算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2019-04-19T18:15:00+08:00" content="2019-04-19">
+              2019-04-19
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-04-19T18:33:14+08:00" content="2019-04-19">
+              2019-04-19
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2019/04/19/sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/04/19/sort/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>排序算法是js最基础的算法，只要弄清楚各种排序算法的排序逻辑，要实现起来就不难了。<br>1.冒泡排序<br>2.快速排序<br>3.选择排序<br>4.插入排序</p>
+<a id="more"></a>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序的思想就是从左到右依次比较数组a相邻的两个数，将较大的数放到后面，一轮比较之后，最大的数会排到最后面；第二轮比较后次大的数会在倒数第二的位置，直到进行a.length次比较后，数组就会升序排列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubbleSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    arr.map(<span class="function">(<span class="params">v,i</span>)=&gt;</span>&#123;</span><br><span class="line">        arr.slice(<span class="number">0</span>,arr.length-i).map(<span class="function">(<span class="params">v,j</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(v&lt;arr[j<span class="number">-1</span>])&#123;</span><br><span class="line">                arr[j] = arr[j<span class="number">-1</span>]</span><br><span class="line">                arr[j<span class="number">-1</span>] = v</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bubbleSort([<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment">//[1, 2, 3, 4, 5, 7]</span></span><br></pre></td></tr></table></figure>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>快速排序的思想是选定一个数为基准，小于这个基准的数放到左边，大于或等于基准的数放右边；然后对左边和右边的数分别进行快速排序，最后合并左边、基准和右边即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> left = [],right = []</span><br><span class="line">        arr.slice(<span class="number">1</span>).map(<span class="function">(<span class="params">v,i</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(v &lt;= arr[<span class="number">0</span>])&#123;</span><br><span class="line">                left.push(v)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right.push(v)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> quickSort(left).concat(arr[<span class="number">0</span>],quickSort(right))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">quickSort([<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment">//[1, 2, 3, 4, 5, 7]</span></span><br></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的思想是每次从数组中选出一个最小数放到数组最前面，第二次选择剩余数里最大的放到数组第二位，直到所有的数都被选择完</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//选择排序——每次选择出最小的数，排到最前面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    arr.map(<span class="function">(<span class="params">v,i</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> minIndex = i</span><br><span class="line">        arr.slice(i).map(<span class="function">(<span class="params">m,j</span>)=&gt;</span>&#123;</span><br><span class="line">            minIndex = m &lt; arr[minIndex] ? j+i : minIndex</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span>(minIndex !== i)&#123;</span><br><span class="line">            arr[i] = arr[minIndex]</span><br><span class="line">            arr[minIndex] = v</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line">selectSort([<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment">//[1, 2, 3, 4, 5, 7]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择排序——每次选择出最大的数，排到最后面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    arr.map(<span class="function">(<span class="params">v,i</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> maxIndex = <span class="number">0</span>,lastIndex = arr.length - i - <span class="number">1</span></span><br><span class="line">        arr.slice(<span class="number">0</span>,arr.length - i).map(<span class="function">(<span class="params">m,j</span>)=&gt;</span>&#123;</span><br><span class="line">            maxIndex = m &gt; arr[maxIndex] ? j : maxIndex</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span>(maxIndex !== lastIndex)&#123;</span><br><span class="line">            <span class="keyword">let</span> lastNum = arr[lastIndex]</span><br><span class="line">            arr[lastIndex] = arr[maxIndex]</span><br><span class="line">            arr[maxIndex] = lastNum</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line">selectSort([<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment">//[1, 2, 3, 4, 5, 7]</span></span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序的思想是依次取出原数组中的一个数插入到一个有序数组中正确的位置，直到原数组里的数都被取完放入新数组，这里需要用到一个新的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newArr = []</span><br><span class="line">    arr.map(<span class="function">(<span class="params">v,i</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i === <span class="number">0</span>)&#123;</span><br><span class="line">            newArr.push(v)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> flag = newArr.some(<span class="function">(<span class="params">m,j</span>)=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(m &gt; v)&#123;<span class="comment">//将v插入m前</span></span><br><span class="line">                    newArr.splice(j,<span class="number">0</span>,v)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">if</span>(!flag)newArr.push(v)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> newArr</span><br><span class="line">&#125;</span><br><span class="line">insertSort([<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>])<span class="comment">//[1, 2, 3, 4, 5, 7]</span></span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/29/php-export-excel/" rel="next" title="php导出excel">
+                <i class="fa fa-chevron-left"></i> php导出excel
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2019/04/19/sort/"
+           data-title="js常见排序算法" data-url="http://yoursite.com/2019/04/19/sort/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alpha</span>
+</div>
+
+<div class="powered-by">
+  alpha
+</div>
+
+<div class="theme-info">
+  GitHub -
+  <a class="theme-link" href="https://github.com/alpha-huang">
+  alpha-huang
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alpha-huang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
