@@ -30,7 +30,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js组件," />
+  <meta name="keywords" content="前端,基础知识,js,es5," />
 
 
 
@@ -46,18 +46,21 @@
 
 
 
-<meta name="description" content="在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。变量提升即将变量声明提升到它所在作用域的最开始的部分。 例一下面这段代码，结果是不是你预想的样子呢？试着运行一下吧！">
-<meta name="keywords" content="js组件">
+<meta name="description" content="js继承中的组合继承和寄生组合继承有什么区别呢？js中的继承分为两个部分，对实例的继承和对原型的继承。可以用原型来继承公用的属性和方法，当原型上的属性和方法改变时，继承关系链上的所有对象都将受到影响；用实例来继承特有的属性和方法，当实例上的属性和方法发生改变时，继承关系链上的所有对象互不影响。">
+<meta name="keywords" content="前端,基础知识,js,es5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js变量提升">
-<meta property="og:url" content="http://yoursite.com/2016/12/15/js-scope/index.html">
+<meta property="og:title" content="组合继承和寄生组合继承">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/js-inherit/index.html">
 <meta property="og:site_name" content="alpha&#39;s blog">
-<meta property="og:description" content="在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。变量提升即将变量声明提升到它所在作用域的最开始的部分。 例一下面这段代码，结果是不是你预想的样子呢？试着运行一下吧！">
+<meta property="og:description" content="js继承中的组合继承和寄生组合继承有什么区别呢？js中的继承分为两个部分，对实例的继承和对原型的继承。可以用原型来继承公用的属性和方法，当原型上的属性和方法改变时，继承关系链上的所有对象都将受到影响；用实例来继承特有的属性和方法，当实例上的属性和方法发生改变时，继承关系链上的所有对象互不影响。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T06:58:28.563Z">
+<meta property="og:image" content="http://yoursite.com/images/20190424200901.png">
+<meta property="og:image" content="http://yoursite.com/images/20190424202901.png">
+<meta property="og:updated_time" content="2019-04-24T12:36:56.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js变量提升">
-<meta name="twitter:description" content="在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。变量提升即将变量声明提升到它所在作用域的最开始的部分。 例一下面这段代码，结果是不是你预想的样子呢？试着运行一下吧！">
+<meta name="twitter:title" content="组合继承和寄生组合继承">
+<meta name="twitter:description" content="js继承中的组合继承和寄生组合继承有什么区别呢？js中的继承分为两个部分，对实例的继承和对原型的继承。可以用原型来继承公用的属性和方法，当原型上的属性和方法改变时，继承关系链上的所有对象都将受到影响；用实例来继承特有的属性和方法，当实例上的属性和方法发生改变时，继承关系链上的所有对象互不影响。">
+<meta name="twitter:image" content="http://yoursite.com/images/20190424200901.png">
 
 
 
@@ -69,7 +72,7 @@
   };
 </script>
 
-  <title> js变量提升 | alpha's blog - we made it</title>
+  <title> 组合继承和寄生组合继承 | alpha's blog - we made it</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -198,7 +201,7 @@
             
             
               
-                js变量提升
+                组合继承和寄生组合继承
               
             
           </h1>
@@ -207,14 +210,14 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-12-15T17:18:00+08:00" content="2016-12-15">
-              2016-12-15
+            <time itemprop="dateCreated" datetime="2019-04-24T19:53:52+08:00" content="2019-04-24">
+              2019-04-24
             </time>
           </span>
         <!--  <span class="post-time">
             | 修改于
-            <time itemprop="dateCreated" datetime="2019-03-28T14:58:28+08:00" content="2019-03-28">
-              2019-03-28
+            <time itemprop="dateCreated" datetime="2019-04-24T20:36:56+08:00" content="2019-04-24">
+              2019-04-24
             </time>
           </span>-->
           <span class="post-author">
@@ -229,8 +232,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
                   </a>
                 </span>
 
@@ -245,8 +248,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/15/js-scope/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/js-scope/" itemprop="commentsCount"></span>
+                <a href="/2019/04/24/js-inherit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/04/24/js-inherit/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -265,17 +268,19 @@
       
 
       
-        <span itemprop="articleBody"><p>在ES6之前，JavaScript没有块级作用域(一对花括号{}即为一个块级作用域)，只有全局作用域和函数作用域。变量提升即将变量声明提升到它所在作用域的最开始的部分。</p>
-<h3 id="例一"><a href="#例一" class="headerlink" title="例一"></a>例一</h3><p>下面这段代码，结果是不是你预想的样子呢？试着运行一下吧！<br><a id="more"></a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">    a=<span class="number">4</span>        </span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">    <span class="keyword">var</span> a;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">运行结果：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>为什么第3行的a会是undefined呢，因为这个a并不是全局变量。在function test里已经声明了（函数体倒数第2行）一个重名的局部变量，所以全局变量a被覆盖了，这说明了Javascript在执行前会对整个脚本文件的定义部分做完整分析,所以在函数test()执行前,函数体中的变量a就被指向内部的局部变量.而不是指向外部的全局变量。但这时a只有声明，还没赋值，所以输出undefined。</p>
-<p>用另一种简单的方式来理解就是<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var a = xxx; 可以理解为两个操作</span></span><br><span class="line"><span class="comment">//var a;</span></span><br><span class="line"><span class="comment">//a = xxx;</span></span><br><span class="line"><span class="comment">//凡是var xx的语句，都会提高到函数作用域的最顶端</span></span><br><span class="line"><span class="comment">//所以，那段代码翻译一下，执行的顺序是：</span></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  a=<span class="number">4</span></span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure></p>
-<p>现在是不是很清晰了呢？</p>
-<h3 id="例二"><a href="#例二" class="headerlink" title="例二"></a>例二</h3><p>再来看另一个例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFood</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (m) &#123;</span><br><span class="line">      <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">getFood(m);</span><br></pre></td></tr></table></figure></p>
-<p>运行后发现结果是</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
-<p><code>if</code>语句虽然没执行，但由于var的变量提升，内部的var a会被提升到函数的最前面，相当于<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFood</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a</span><br><span class="line">  <span class="keyword">if</span> (m) &#123;</span><br><span class="line">      a = <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">getFood(m);</span><br></pre></td></tr></table></figure></p>
-<p>使用ES6的<code>let</code>和<code>const</code>来进行变量声明就不会有变量提升。</p>
+        <span itemprop="articleBody"><!--以下是正文-->
+<p>js继承中的组合继承和寄生组合继承有什么区别呢？js中的继承分为两个部分，对实例的继承和对原型的继承。可以用原型来继承公用的属性和方法，当原型上的属性和方法改变时，继承关系链上的所有对象都将受到影响；用实例来继承特有的属性和方法，当实例上的属性和方法发生改变时，继承关系链上的所有对象互不影响。</p>
+<a id="more"></a>
+<h2 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sup</span>(<span class="params">grade</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.grade = grade</span><br><span class="line">&#125;</span><br><span class="line">Sup.prototype.sayGrade = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.grade)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    Sup.call(<span class="keyword">this</span>,<span class="string">'一3班'</span>)</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = <span class="keyword">new</span> Sup(<span class="string">'一3班'</span>);</span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> Sub(<span class="string">'小强'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.dir(instance);</span><br><span class="line"><span class="built_in">console</span>.dir(instance.sayGrade());</span><br></pre></td></tr></table></figure>
+<p>运行结果如下</p>
+<p> <img src="/images/20190424200901.png" alt="组合继承" title="组合继承"></p>
+<p>可以看到实例上确实已经有了继承自<code>Sup</code>的<code>grade</code>属性和由<code>Sub</code>产生的<code>name</code>属性，在实例上执行<code>sayGrade</code>方法也能正确打印出结果。但可以看到由于<code>Sup</code>构造函数实例化了两次，在<code>Sub</code>的原型上也出现了<code>grade</code>属性。由于在实例上获取属性时会按原型链逐级往上找，而在实例上就已经获取到了<code>grade</code>属性，所以通常情况下原型上的这个属性不会生效，拥有这个“多余的”属性也无伤大雅。但在某些情况下会造成错误，例如删除实例上的<code>grade</code>属性，实际上还能访问到，此时获取到的是原型上的属性。</p>
+<p>问题就出在第一次的<code>new Sup(&#39;一3班&#39;)</code>上，只是为了继承原型上的实例和方法其实不必要执行该方法，寄生组合继承就可以解决这个问题。</p>
+<h2 id="寄生组合继承"><a href="#寄生组合继承" class="headerlink" title="寄生组合继承"></a>寄生组合继承</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sup</span>(<span class="params">grade</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.grade = grade</span><br><span class="line">&#125;</span><br><span class="line">Sup.prototype.sayGrade = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.grade)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    Sup.call(<span class="keyword">this</span>,<span class="string">'一3班'</span>)</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Sub.prototype = <span class="built_in">Object</span>.create(Sup.prototype);</span><br><span class="line">Sub.prototype.constructor = Sub;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> Sub(<span class="string">'小强'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.dir(instance);</span><br><span class="line"><span class="built_in">console</span>.dir(instance.sayGrade);</span><br></pre></td></tr></table></figure>
+<p>运行结果如下</p>
+<p> <img src="/images/20190424202901.png" alt="寄生组合继承" title="寄生组合继承"></p>
+<p> 可以看到，<code>Sub</code>的原型上已经没有<code>grade</code>属性，这是因为<code>Object.create(Sup.prototype)</code>方法返回一个以<code>Sup.prototype</code>为原型的对象，而不用执行<code>Sup</code>方法。</p>
+<p> 显然寄生组合继承要比组合继承更加合理。</p>
 </span>
       
     </div>
@@ -284,7 +289,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js组件/" rel="tag">#js组件</a>
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/基础知识/" rel="tag">#基础知识</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+            <a href="/tags/es5/" rel="tag">#es5</a>
           
         </div>
       
@@ -293,17 +304,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/15/parse-area-text/" rel="next" title="解析地区文本の方法">
-                <i class="fa fa-chevron-left"></i> 解析地区文本の方法
+              <a href="/2019/04/19/sort/" rel="next" title="js常见排序算法">
+                <i class="fa fa-chevron-left"></i> js常见排序算法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/13/hexo-instructions/" rel="prev" title="Hexo安装维护说明">
-                Hexo安装维护说明 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -330,8 +337,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/15/js-scope/"
-           data-title="js变量提升" data-url="http://yoursite.com/2016/12/15/js-scope/">
+      <div class="ds-thread" data-thread-key="2019/04/24/js-inherit/"
+           data-title="组合继承和寄生组合继承" data-url="http://yoursite.com/2019/04/24/js-inherit/">
       </div>
     
   </div>
