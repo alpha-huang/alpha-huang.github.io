@@ -30,7 +30,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,js,基础知识,jquery," />
+  <meta name="keywords" content="前端,js,算法," />
 
 
 
@@ -46,18 +46,18 @@
 
 
 
-<meta name="description" content="jQuery中的attr、prop、data方法区别如下：1.attr用来读写HTML节点上的属性2.prop用来读写DOM对象的属性以及状态相关的属性3.data用来读写自定义的jquery属性">
-<meta name="keywords" content="前端,js,基础知识,jquery">
+<meta name="description" content="写给定一个包含n个整数的数组nums，判断nums中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[ [-1, 0, 1], [-1, -1, 2]]">
+<meta name="keywords" content="前端,js,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery中的attr、prop、data方法对比">
-<meta property="og:url" content="http://yoursite.com/2018/04/29/jquery-attr-prop-data/index.html">
+<meta property="og:title" content="三数之和">
+<meta property="og:url" content="http://yoursite.com/2019/04/30/algorithm-3sum/index.html">
 <meta property="og:site_name" content="alpha&#39;s blog">
-<meta property="og:description" content="jQuery中的attr、prop、data方法区别如下：1.attr用来读写HTML节点上的属性2.prop用来读写DOM对象的属性以及状态相关的属性3.data用来读写自定义的jquery属性">
+<meta property="og:description" content="写给定一个包含n个整数的数组nums，判断nums中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[ [-1, 0, 1], [-1, -1, 2]]">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T06:01:13.016Z">
+<meta property="og:updated_time" content="2019-04-30T07:25:50.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery中的attr、prop、data方法对比">
-<meta name="twitter:description" content="jQuery中的attr、prop、data方法区别如下：1.attr用来读写HTML节点上的属性2.prop用来读写DOM对象的属性以及状态相关的属性3.data用来读写自定义的jquery属性">
+<meta name="twitter:title" content="三数之和">
+<meta name="twitter:description" content="写给定一个包含n个整数的数组nums，判断nums中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。注意：答案中不可以包含重复的三元组。例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[ [-1, 0, 1], [-1, -1, 2]]">
 
 
 
@@ -69,7 +69,7 @@
   };
 </script>
 
-  <title> jQuery中的attr、prop、data方法对比 | alpha's blog - we made it</title>
+  <title> 三数之和 | alpha's blog - we made it</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -198,7 +198,7 @@
             
             
               
-                jQuery中的attr、prop、data方法对比
+                三数之和
               
             
           </h1>
@@ -207,14 +207,14 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2018-04-29T21:12:34+08:00" content="2018-04-29">
-              2018-04-29
+            <time itemprop="dateCreated" datetime="2019-04-30T14:39:56+08:00" content="2019-04-30">
+              2019-04-30
             </time>
           </span>
         <!--  <span class="post-time">
             | 修改于
-            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
-              2019-03-28
+            <time itemprop="dateCreated" datetime="2019-04-30T15:25:50+08:00" content="2019-04-30">
+              2019-04-30
             </time>
           </span>-->
           <span class="post-author">
@@ -229,8 +229,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
                   </a>
                 </span>
 
@@ -245,8 +245,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2018/04/29/jquery-attr-prop-data/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/29/jquery-attr-prop-data/" itemprop="commentsCount"></span>
+                <a href="/2019/04/30/algorithm-3sum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/04/30/algorithm-3sum/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -266,18 +266,13 @@
 
       
         <span itemprop="articleBody"><!--以下是正文-->
-<p>jQuery中的attr、prop、data方法区别如下：<br>1.attr用来读写HTML节点上的属性<br>2.prop用来读写DOM对象的属性以及状态相关的属性<br>3.data用来读写自定义的jquery属性</p>
+<blockquote>
+<p>写给定一个包含n个整数的数组nums，判断nums中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。<br>注意：答案中不可以包含重复的三元组。<br>例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，<br>满足要求的三元组集合为：<br>[<br> [-1, 0, 1],<br> [-1, -1, 2]<br>]</p>
+</blockquote>
 <a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"checkbox"</span> id=<span class="string">"demo"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"demo_class"</span> style=<span class="string">"width:20px;"</span> myattr=<span class="string">"html_attr"</span> data-test=<span class="string">"demo_data"</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>上面的HTML标签中，带有id、class、style、myattr、data-test等属性，用三种方法读出来的结果分别是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'id'</span>))<span class="comment">//"demo"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'type'</span>))<span class="comment">//"checkbox"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'class'</span>))<span class="comment">//"demo_class"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'className'</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'style'</span>))<span class="comment">//"width:20px;"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'myattr'</span>))<span class="comment">//"html_attr"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'data-test'</span>))<span class="comment">//"demo_data"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'checked'</span>))<span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'id'</span>))<span class="comment">//"demo"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'type'</span>))<span class="comment">//"checkbox"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'class'</span>))<span class="comment">//"demo_class"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'className'</span>))<span class="comment">//"demo_class"</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'style'</span>))<span class="comment">//CSSStyleDeclaration</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'myattr'</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'data-test'</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'checked'</span>))<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).data(<span class="string">'test'</span>))<span class="comment">//"demo_data"</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，attr方法可以读出HTML标签上的所有属性，prop方法可以读出HTML标签的部分属性（id、class、name、type、checked、selected、disabled、selectedIndex、tagName、nodeName、nodeType、ownerDocument、defaultChecked 和 defaultSelected等），data方法可以读出HTML标签上以“data-”开头的属性。</p>
-<p>此外，prop可以正确读出checked、selected等属性，并且在更新状态之后也能正确识别，而attr读不到或者读到的不正确。</p>
-<p>接着我们用三种方法对这个DOM对象的属性进行设置，并分别用三种方式读取设置的属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#demo'</span>).attr(<span class="string">'data-attr'</span>,<span class="number">1</span>);</span><br><span class="line">$(<span class="string">'#demo'</span>).prop(<span class="string">'data-prop'</span>,<span class="number">2</span>);</span><br><span class="line">$(<span class="string">'#demo'</span>).data(<span class="string">'data'</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'data-attr'</span>))<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'data-prop'</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).attr(<span class="string">'data-data'</span>))<span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'data-attr'</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'data-prop'</span>))<span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).prop(<span class="string">'data-data'</span>))<span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).data(<span class="string">'attr'</span>))<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).data(<span class="string">'prop'</span>))<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'#demo'</span>).data(<span class="string">'data'</span>))<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-<p>可以发现用attr设置的属性将会直接反映到HTML标签上，其中prop原本就能读取的那些固有属性会同步更新，而自定义属性不会更新，data读到的自定义属性也不会更新。</p>
-<p>prop无法修改固有属性，但是能修改checked、selected等，prop设置的属性将会被保存在DOM对象中，但是prop设置的属性不能被attr、data方法读取，data方法设置的属性也不能被attr、prop方法读取。</p>
-<p>因此，如果是HTML标签上带有的属性，最好用attr方法来读写；自定义属性可以用data方法读写；checked、selected、disabled等状态属性只能用prop来读写。</p>
+<h2 id="一、问题分析"><a href="#一、问题分析" class="headerlink" title="一、问题分析"></a>一、问题分析</h2><p>在集合中分别不重复地取3个数进行组合，要求他们的和为0，最直接的方法就是三层循环取3个数，然后判断它们的和是否为0，如果满足条件并且不重复，就将其取出放入结果集合中。但是这里也有一些可以优化的地方<br>1.第一次取完a，取b的时候可以直接从a后面开始取，c可以直接从b后面开始取，可以减少重复取值；<br>2.两层循环之后可以将<code>a+b+c=0</code>转化为<code>-(a+b)=c</code>，只需要两层循环取两个值，然后用<code>indexOf()</code>查看剩下的数里有没有<code>-(a+b)</code><br>3.在对比三元组是否重复时，如果每个数两两比较，比较复杂，可以对其进行排序并转化为字符串比较<br>4.在最开始就对原数组进行升序排序后可以发现，<code>a&lt;=b&lt;=c</code>，如果a大于0，则三数之和一定大于0，就不用往后判断了；并且在对比是否重复时也可以不用重新排序了</p>
+<h2 id="二、算法实现"><a href="#二、算法实现" class="headerlink" title="二、算法实现"></a>二、算法实现</h2><p>根据以上分析，代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">-1</span>, <span class="number">-4</span>];</span><br><span class="line"><span class="keyword">let</span> nums = [...data].sort(<span class="function">(<span class="params">m,n</span>)=&gt;</span>(m-n))</span><br><span class="line"><span class="keyword">let</span> result = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(nums[i]&gt;<span class="number">0</span>) <span class="keyword">break</span>;<span class="comment">//如果最小的数大于0，和不可能为0</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> j = i+<span class="number">1</span>; j&lt;nums.length; j++)&#123;</span><br><span class="line">		<span class="keyword">let</span> index = nums.indexOf(-nums[i]-nums[j],j+<span class="number">1</span>);</span><br><span class="line">		index !== <span class="number">-1</span> </span><br><span class="line">			&amp;&amp; noRepeat([nums[i],nums[j],nums[index]],result)</span><br><span class="line">			&amp;&amp; result.push([nums[i],nums[j],nums[index]]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">noRepeat</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b.length === <span class="number">0</span>)<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">	<span class="keyword">for</span>(item <span class="keyword">of</span> b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(item.join(<span class="string">','</span>) === a.join(<span class="string">','</span>))&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(result)<span class="comment">//[[-1, -1, 2],[-1, 0, 1]]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>这题的逻辑并不复杂，但是对于重复数组的处理需要一些技巧，直接对两个数组中的各个元素两两进行比较是比较复杂的，但是排序之后再对比就简单很多了。另外，转换成字符串之后再比较也可以简化算法，但是值得注意的是，如果是先把所有满足条件的数组放入结果集合，然后对其进行去重，处理起来会麻烦一些，还需要再将字符串转回数组，但是在将三元组放入结果集合前就先判断是否结果集中已经存在相同的三元组就会简单一些了。</p>
 </span>
       
     </div>
@@ -290,9 +285,7 @@
           
             <a href="/tags/js/" rel="tag">#js</a>
           
-            <a href="/tags/基础知识/" rel="tag">#基础知识</a>
-          
-            <a href="/tags/jquery/" rel="tag">#jquery</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -301,17 +294,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/28/js-loop/" rel="next" title="js里常见的循环">
-                <i class="fa fa-chevron-left"></i> js里常见的循环
+              <a href="/2019/04/29/algorithm-prime/" rel="next" title="求第n个质数">
+                <i class="fa fa-chevron-left"></i> 求第n个质数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/29/php-import-excel/" rel="prev" title="php读取excel">
-                php读取excel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -338,8 +327,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2018/04/29/jquery-attr-prop-data/"
-           data-title="jQuery中的attr、prop、data方法对比" data-url="http://yoursite.com/2018/04/29/jquery-attr-prop-data/">
+      <div class="ds-thread" data-thread-key="2019/04/30/algorithm-3sum/"
+           data-title="三数之和" data-url="http://yoursite.com/2019/04/30/algorithm-3sum/">
       </div>
     
   </div>

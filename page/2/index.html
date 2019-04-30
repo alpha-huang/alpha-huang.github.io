@@ -182,11 +182,125 @@
 
     
     
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/26/es5-note-event/" itemprop="url">
+                  跨浏览器的事件监听方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2018-04-26T14:36:37+08:00" content="2018-04-26">
+              2018-04-26
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
+              2019-03-28
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/26/es5-note-event/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/26/es5-note-event/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
       
 
       
-    
+        
+          <!--以下是正文-->
+<p>要写一个兼容所有浏览器的事件监听方法，首先要清楚不同浏览器里的事件监听方法的区别。<br>注册和销毁事件监听的方法有三种：<br>1.addEventListener、removeEventListener：DOM2级方法，兼容IE9及以上和非IE浏览器<br>2.attachEvent、detachEvent：IE方法，兼容IE8及以下浏览器<br>3.on：DOM0级方法，兼容更早期的浏览器</p>
+<p>另外DOM2级方法允许设置在事件捕获阶段触发（第三个参数设置为true），而IE方法只允许在冒泡阶段触发，因此为了保持统一，我们都在冒泡阶段触发。<br>
+          <!--
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/04/26/es5-note-event/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          -->
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1227,124 +1341,6 @@
           <!--
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/19/sql-join-query/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          -->
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/11/git-common-command/" itemprop="url">
-                  git常用命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-11T16:23:24+08:00" content="2016-01-11">
-              2016-01-11
-            </time>
-          </span>
-        <!--  <span class="post-time">
-            | 修改于
-            <time itemprop="dateCreated" datetime="2019-03-28T14:01:13+08:00" content="2019-03-28">
-              2019-03-28
-            </time>
-          </span>-->
-          <span class="post-author">
-            | 作者
-            <author itemprop="dateAuthor" content="alpha">
-              alpha
-            </author>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/11/git-common-command/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/11/git-common-command/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>配置参数：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"alpha"</span></span><br><span class="line">git config --global user.email <span class="string">"huangdong2015@outlook.com"</span></span><br></pre></td></tr></table></figure>
-          <!--
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/11/git-common-command/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
