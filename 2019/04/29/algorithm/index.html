@@ -46,18 +46,18 @@
 
 
 
-<meta name="description" content="写一个求第n个质数的算法  一、问题分析可以分为两步，第一步判断一个数是否是质数，第二部返回第n个质数。">
+<meta name="description" content="写一个求第n个质数的算法  一、问题分析可以分为两步，第一步判断一个数是否是质数，第二步返回第n个质数。">
 <meta name="keywords" content="前端,js,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="求质数算法">
 <meta property="og:url" content="http://yoursite.com/2019/04/29/algorithm/index.html">
 <meta property="og:site_name" content="alpha&#39;s blog">
-<meta property="og:description" content="写一个求第n个质数的算法  一、问题分析可以分为两步，第一步判断一个数是否是质数，第二部返回第n个质数。">
+<meta property="og:description" content="写一个求第n个质数的算法  一、问题分析可以分为两步，第一步判断一个数是否是质数，第二步返回第n个质数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-30T06:10:21.972Z">
+<meta property="og:updated_time" content="2019-04-30T06:16:06.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="求质数算法">
-<meta name="twitter:description" content="写一个求第n个质数的算法  一、问题分析可以分为两步，第一步判断一个数是否是质数，第二部返回第n个质数。">
+<meta name="twitter:description" content="写一个求第n个质数的算法  一、问题分析可以分为两步，第一步判断一个数是否是质数，第二步返回第n个质数。">
 
 
 
@@ -213,7 +213,7 @@
           </span>
         <!--  <span class="post-time">
             | 修改于
-            <time itemprop="dateCreated" datetime="2019-04-30T14:10:21+08:00" content="2019-04-30">
+            <time itemprop="dateCreated" datetime="2019-04-30T14:16:06+08:00" content="2019-04-30">
               2019-04-30
             </time>
           </span>-->
@@ -269,9 +269,9 @@
 <blockquote>
 <p>写一个求第n个质数的算法</p>
 </blockquote>
-<h2 id="一、问题分析"><a href="#一、问题分析" class="headerlink" title="一、问题分析"></a>一、问题分析</h2><p>可以分为两步，第一步判断一个数是否是质数，第二部返回第n个质数。</p>
+<h2 id="一、问题分析"><a href="#一、问题分析" class="headerlink" title="一、问题分析"></a>一、问题分析</h2><p>可以分为两步，第一步判断一个数是否是质数，第二步返回第n个质数。</p>
 <a id="more"></a>
-<h2 id="二、算法实现"><a href="#二、算法实现" class="headerlink" title="二、算法实现"></a>二、算法实现</h2><p>质数是不能被1和其自身之外的整数整除的正整数，因此只需要用一个数去对所有比它小的数取余，如果余数有0，表示能被整除，则不是质数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrime</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n % i === <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="二、算法实现"><a href="#二、算法实现" class="headerlink" title="二、算法实现"></a>二、算法实现</h2><p>质数是不能被1和其自身之外的整数整除的正整数，因此只需要用一个数去对所有比它小的整数取余，如果余数有0，表示能被整除，则不是质数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrime</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n % i === <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后从2开始依次判断每个整数是否为质数，直到统计到第n个质数后结束。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prime</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">let</span> m = <span class="number">0</span></span><br><span class="line">	<span class="keyword">let</span> i = <span class="number">2</span></span><br><span class="line">	<span class="keyword">while</span>(m &lt; n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(isPrime(i))&#123;</span><br><span class="line">			m++</span><br><span class="line">		&#125;</span><br><span class="line">		i++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line">prime(<span class="number">1</span>)<span class="comment">//2</span></span><br><span class="line">prime(<span class="number">2</span>)<span class="comment">//3</span></span><br><span class="line">prime(<span class="number">3</span>)<span class="comment">//5</span></span><br><span class="line">prime(<span class="number">4</span>)<span class="comment">//7</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="三、算法优化"><a href="#三、算法优化" class="headerlink" title="三、算法优化"></a>三、算法优化</h2><h3 id="1、平方根"><a href="#1、平方根" class="headerlink" title="1、平方根"></a>1、平方根</h3><p>由于如果一个正整数在2到n的平方根之间都不能被整除就可以确定这个数是质数，所以判断质数时只用对2到n的平方根之间的整数取余。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrime</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">2</span>; i * i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(n % i === <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
