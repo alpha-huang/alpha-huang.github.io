@@ -1,0 +1,613 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法,js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="树形结构是算法中很常见的一种结构，正好工作中遇到了，就研究一下遍历、深度、查找节点等算法。">
+<meta name="keywords" content="算法,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树形结构的算法">
+<meta property="og:url" content="http://yoursite.com/2016/12/01/js-tree/index.html">
+<meta property="og:site_name" content="alpha&#39;s blog">
+<meta property="og:description" content="树形结构是算法中很常见的一种结构，正好工作中遇到了，就研究一下遍历、深度、查找节点等算法。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/201908291047.png">
+<meta property="og:image" content="http://yoursite.com/images/201908291047.png">
+<meta property="og:updated_time" content="2019-08-29T09:13:01.544Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树形结构的算法">
+<meta name="twitter:description" content="树形结构是算法中很常见的一种结构，正好工作中遇到了，就研究一下遍历、深度、查找节点等算法。">
+<meta name="twitter:image" content="http://yoursite.com/images/201908291047.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'remove',
+    motion: true
+  };
+</script>
+
+  <title> 树形结构的算法 | alpha's blog - we made it</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">alpha's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">alpha's blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                树形结构的算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-12-01T09:37:00+08:00" content="2016-12-01">
+              2016-12-01
+            </time>
+          </span>
+        <!--  <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2019-08-29T17:13:01+08:00" content="2019-08-29">
+              2019-08-29
+            </time>
+          </span>-->
+          <span class="post-author">
+            | 作者
+            <author itemprop="dateAuthor" content="alpha">
+              alpha
+            </author>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/01/js-tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/01/js-tree/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>树形结构是算法中很常见的一种结构，正好工作中遇到了，就研究一下<code>遍历</code>、<code>深度</code>、<code>查找节点</code>等算法。<br><a id="more"></a></p>
+<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1><p>深度优先遍历的思想是从顶点开始，访问其第一个未被访问的邻节点，然后以该邻节点为顶点，重复以上步骤，直到所有节点被访问完。</p>
+<p>广度优先遍历的思想是从顶点开始，访问其所有未被访问的邻节点，然后依次访问这些节点的子节点，直到所有节点被访问完。</p>
+<p><img src="/images/201908291047.png" alt="深度优先遍历" title="深度优先遍历"></p>
+<p>如上图，按深度优先遍历的顺序为<code>1、2、3、4、5、6</code>，按广度优先遍历的顺序为<code>1、2、5、3、4、6</code>。</p>
+<p>有如下数组，将其展开为一维数组<code>[1,2,3,4,5,6,7]</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [</span><br><span class="line">    [</span><br><span class="line">        <span class="number">1</span>,</span><br><span class="line">        [</span><br><span class="line">            <span class="number">2</span>,</span><br><span class="line">            <span class="number">3</span></span><br><span class="line">        ]</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        <span class="number">4</span>,</span><br><span class="line">        [</span><br><span class="line">            [</span><br><span class="line">                <span class="number">5</span>,</span><br><span class="line">                <span class="number">6</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="number">7</span></span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<h2 id="深度优先"><a href="#深度优先" class="headerlink" title="深度优先"></a>深度优先</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepVisit</span>(<span class="params">data, newData = []</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i] <span class="keyword">instanceof</span> <span class="built_in">Array</span> &amp;&amp; data[i].length)&#123;</span><br><span class="line">            newData.concat(...deepVisit(data[i], newData))</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            newData.push(data[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newData</span><br><span class="line">&#125;</span><br><span class="line">deepVisit(arr)<span class="comment">//[1, 2, 3, 4, 5, 6, 7]</span></span><br></pre></td></tr></table></figure>
+<h2 id="广度优先"><a href="#广度优先" class="headerlink" title="广度优先"></a>广度优先</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wideVisit</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> over = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i] <span class="keyword">instanceof</span> <span class="built_in">Array</span> &amp;&amp; data[i].length)&#123;</span><br><span class="line">            over = <span class="literal">false</span></span><br><span class="line">            data.splice(i,<span class="number">1</span>,...data[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> over ? data : ideVisit(data)</span><br><span class="line">&#125;</span><br><span class="line">wideVisit(arr)<span class="comment">//[1, 2, 3, 4, 5, 6, 7]</span></span><br></pre></td></tr></table></figure>
+<h1 id="标记和查找"><a href="#标记和查找" class="headerlink" title="标记和查找"></a>标记和查找</h1><p>有如下结构，标记每个节点的深度、查找深度为n的所有节点、查找所有的叶子节点（末端节点）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [</span><br><span class="line">    &#123;</span><br><span class="line">        a:<span class="number">1</span>,</span><br><span class="line">        children: [</span><br><span class="line">            &#123;</span><br><span class="line">                a:<span class="number">2</span>,</span><br><span class="line">                children: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        a:<span class="number">3</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        a:<span class="number">4</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        a:<span class="number">5</span>,</span><br><span class="line">        children: [</span><br><span class="line">            &#123;</span><br><span class="line">                a:<span class="number">6</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>数组的树结构如图所示</p>
+<p><img src="/images/201908291047.png" alt="数组树结构" title="深度优先遍历"></p>
+<p>其中<code>3、4、6</code>为叶子节点。</p>
+<p>下面对arr数组进行遍历，给每个节点编上号，并标示其层级。</p>
+<h2 id="标记深度和编号"><a href="#标记深度和编号" class="headerlink" title="标记深度和编号"></a>标记深度和编号</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepVisit</span>(<span class="params">data, keyNode = <span class="number">1</span>, depth = <span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</span><br><span class="line">        data[i].keyNode = keyNode++</span><br><span class="line">        data[i].depth = depth</span><br><span class="line">        <span class="keyword">if</span>(data[i].children &amp;&amp; data[i].children.length)&#123;</span><br><span class="line">            <span class="keyword">let</span> result = deepVisit(data[i].children, keyNode, depth+<span class="number">1</span>)</span><br><span class="line">            keyNode = result.keyNode</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        keyNode: keyNode</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">deepVisit(arr)</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br></pre></td></tr></table></figure>
+<p>运行结果如下，arr的每个节点已经被编号用<code>keyNode</code>字段标示并用<code>depth</code>字段标示深度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">"children"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"a"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"children"</span>: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">"a"</span>: <span class="number">3</span>,</span><br><span class="line">                        <span class="string">"keyNode"</span>: <span class="number">3</span>,</span><br><span class="line">                        <span class="string">"depth"</span>: <span class="number">3</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">"a"</span>: <span class="number">4</span>,</span><br><span class="line">                        <span class="string">"keyNode"</span>: <span class="number">4</span>,</span><br><span class="line">                        <span class="string">"depth"</span>: <span class="number">3</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ],</span><br><span class="line">                <span class="string">"keyNode"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"depth"</span>: <span class="number">2</span></span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"keyNode"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">"depth"</span>: <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">"children"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"a"</span>: <span class="number">6</span>,</span><br><span class="line">                <span class="string">"keyNode"</span>: <span class="number">6</span>,</span><br><span class="line">                <span class="string">"depth"</span>: <span class="number">2</span></span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">"keyNode"</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">"depth"</span>: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="查找叶子节点"><a href="#查找叶子节点" class="headerlink" title="查找叶子节点"></a>查找叶子节点</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepVisit</span>(<span class="params">data, leaf = []</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i].children &amp;&amp; data[i].children.length)&#123;</span><br><span class="line">            <span class="keyword">let</span> result = deepVisit(data[i].children, leaf)</span><br><span class="line">            leaf.concat(...leaf)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            leaf.push(data[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> leaf</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(deepVisit(arr))</span><br></pre></td></tr></table></figure>
+<p>运行结果如下，即所有叶子节点的集合。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">3</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">4</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">6</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="查找keyNode为n的节点"><a href="#查找keyNode为n的节点" class="headerlink" title="查找keyNode为n的节点"></a>查找keyNode为n的节点</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findNode</span>(<span class="params">data, keyNode</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(data[i].keyNode === keyNode)&#123;</span><br><span class="line">            <span class="keyword">return</span> data[i]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(data[i].children &amp;&amp; data[i].children.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> findNode(data[i].children, keyNode)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">deepVisit(arr)</span><br><span class="line"><span class="built_in">console</span>.log(findNode(arr,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<p>运行结果如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"a"</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">"keyNode"</span>: <span class="number">4</span>,</span><br><span class="line">    <span class="string">"depth"</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="查找深度为n的节点"><a href="#查找深度为n的节点" class="headerlink" title="查找深度为n的节点"></a>查找深度为n的节点</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findNode</span>(<span class="params">data, depth, curDepth = <span class="number">1</span>, result = []</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(curDepth === depth)&#123;</span><br><span class="line">            result.push(data[i])</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(data[i].children &amp;&amp; data[i].children.length)&#123;</span><br><span class="line">            findNode(data[i].children, depth, curDepth+<span class="number">1</span>, result)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(findNode(arr,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>运行结果如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="string">"children"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"a"</span>: <span class="number">3</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"a"</span>: <span class="number">4</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"a"</span>: <span class="number">6</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法-js/" rel="tag">#算法,js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/19/sql-join-query/" rel="next" title="CI联表查询">
+                <i class="fa fa-chevron-left"></i> CI联表查询
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/01/floating-point-precision-loss/" rel="prev" title="浮点数丢失精度">
+                浮点数丢失精度 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/01/js-tree/"
+           data-title="树形结构的算法" data-url="http://yoursite.com/2016/12/01/js-tree/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alpha</span>
+</div>
+
+<div class="powered-by">
+  alpha
+</div>
+
+<div class="theme-info">
+  GitHub -
+  <a class="theme-link" href="https://github.com/alpha-huang">
+  alpha-huang
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alpha-huang"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
